@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
+import { MessengerService } from '../messenger.service'
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,10 @@ import { FormBuilder } from '@angular/forms'
 export class LoginFormComponent implements OnInit {
   customFormName;
 
-  constructor(private builder: FormBuilder) {
+  constructor(
+  private builder: FormBuilder,
+  private messenger: MessengerService,
+  ) {
     this.clearForm();
   }
 
@@ -17,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(data) {
-    console.log(data)
+    this.messenger.send(data)
     this.clearForm();
   }
 
